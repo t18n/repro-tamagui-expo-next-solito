@@ -15,7 +15,7 @@ import { useLink } from 'solito/link'
 import icon from './icon.png'
 import { Image } from 'react-native'
 import { SolitoImage } from 'solito/image'
-// import { StyledMap } from '@my/ui/src';
+import { StyledMap } from '@my/ui/src';
 
 export function HomeScreen() {
   const linkProps = useLink({
@@ -33,7 +33,7 @@ export function HomeScreen() {
 
         <Image source={icon} width={100} height={100} />
 
-        {/* <StyledMap /> */}
+        <StyledMap />
 
         <Separator />
         <Paragraph ta="center">
