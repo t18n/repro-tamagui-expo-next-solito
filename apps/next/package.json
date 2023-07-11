@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "DEBUG=tamagui next dev",
     "build": "cd ../.. && yarn build && cd apps/next && TAMAGUI_TARGET=web next build",
     "start": "next start",
     "serve": "NODE_ENV=production next start --port 8151",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tamagui/next-theme": "latest",
+    "@teovilla/react-native-web-maps": "^0.9.2",
     "app": "0.0.0",
     "next": "13.4.4",
     "raf": "^3.4.1",
@@ -20,6 +21,7 @@
     "react-native-maps": "^1.7.1",
     "react-native-web": "^0.18.12",
     "react-native-web-lite": "latest",
+    "react-native-web-maps": "^0.3.0",
     "vercel": "latest"
   },
   "devDependencies": {

@@ -10,43 +10,18 @@ const boolVals = {
 const disableExtraction =
   boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development'
 
-console.log(`
-
-Welcome to Tamagui!
-
-You can update this monorepo to the latest Tamagui release just by running:
-
-yarn upgrade:tamagui
-
-We've set up a few things for you.
-
-See the "excludeReactNativeWebExports" setting in next.config.js, which omits these
-from the bundle: Switch, ProgressBar Picker, CheckBox, Touchable. To save more,
-you can add ones you don't need like: AnimatedFlatList, FlatList, SectionList,
-VirtualizedList, VirtualizedSectionList.
-
-Even better, enable "useReactNativeWebLite" and you can remove the
-excludeReactNativeWebExports setting altogether and get tree-shaking and
-concurrent mode support as well.
-
-🐣
-
-Remove this log in next.config.js.
-
-`)
-
 const plugins = [
   withTamagui({
     config: './tamagui.config.ts',
     components: ['tamagui', '@my/ui'],
-    importsWhitelist: ['constants.js', 'colors.js'],
+    importsWhitelist: ['constants.js', 'colors.js', ],
     outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
     logTimings: true,
     disableExtraction,
     // experiment - reduced bundle size react-native-web
     useReactNativeWebLite: false,
     shouldExtract: (path) => {
-      if (path.includes(join('packages', 'app'))) {
+      if (path.includes(join('packages'))) {
         return true
       }
     },
@@ -60,6 +35,7 @@ module.exports = function () {
     typescript: {
       ignoreBuildErrors: true,
     },
+    images: {},
     modularizeImports: {
       '@tamagui/lucide-icons': {
         transform: `@tamagui/lucide-icons/dist/esm/icons/{{kebabCase member}}`,
@@ -72,6 +48,7 @@ module.exports = function () {
       'expo-linking',
       'expo-constants',
       'expo-modules-core',
+      '@my/ui',
     ],
     experimental: {
       /*
@@ -90,8 +67,7 @@ module.exports = function () {
     webpack: (config, { isServer }) => {
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        // 'react-native$': 'react-native-web',
-        // 'react-native-maps$': '@teovilla/react-native-web-maps',
+        'react-native': 'react-native-web',
         'react-native-maps': 'react-native-web-maps',
       }
 

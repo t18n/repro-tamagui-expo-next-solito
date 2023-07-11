@@ -12,10 +12,10 @@ import {
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
-import icon from './icon.png'
+import icon from '../../assets/icon.png'
 import { Image } from 'react-native'
 import { SolitoImage } from 'solito/image'
-import { StyledMap } from '@my/ui/src';
+import { ImageTest } from '@my/ui';
 
 export function HomeScreen() {
   const linkProps = useLink({
@@ -33,7 +33,9 @@ export function HomeScreen() {
 
         <Image source={icon} width={100} height={100} />
 
-        <StyledMap />
+        <ImageTest />
+
+        {/* <StyledMap /> */}
 
         <Separator />
         <Paragraph ta="center">
